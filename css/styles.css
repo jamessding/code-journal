@@ -1,0 +1,37 @@
+.background-purple {
+  background-color: rgb(85, 43, 129);
+  color: white;
+}
+
+.entry-image {
+  max-width: 100%;
+  height: auto;
+  padding-bottom: 1.5rem;
+}
+
+.label-div {
+  padding-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.input-div {
+  padding-bottom: 1.5rem;
+}
+
+h1,
+h2 {
+  padding-left: 1rem;
+}
+
+.entry-input {
+  padding: 8px;
+  width: 100%;
+}
+
+.entry-textarea {
+  width: 100%;
+}
+
+.text-align-right {
+  text-align: right;
+}
