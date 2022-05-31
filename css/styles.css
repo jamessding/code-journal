@@ -17,9 +17,9 @@ body {
 
 .entry-image {
   width: 100%;
-  height: auto;
-  max-height: 400px;
-  padding-bottom: 1.5rem;
+  max-height: 360px;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
 }
 
 .label-div {
@@ -50,9 +50,10 @@ h2 {
 
 .button {
   text-transform: uppercase;
-  padding: 0.4rem 0.7rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 5px;
   border: none;
+  font-size: 1.1rem;
 }
 
 .margin-btm {
