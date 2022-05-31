@@ -6,7 +6,6 @@ function updatePhoto(event) {
 }
 $photoUrlInput.addEventListener('input', updatePhoto);
 
-var $saveButton = document.querySelector('.save');
 var $form = document.querySelector('.form');
 function clickSaveButton(event) {
   event.preventDefault();
@@ -21,4 +20,4 @@ function clickSaveButton(event) {
   $form.reset();
 }
 
-$saveButton.addEventListener('submit', clickSaveButton);
+$form.addEventListener('submit', clickSaveButton);
