@@ -25,7 +25,7 @@ function clickSaveButton(event) {
 $form.addEventListener('submit', clickSaveButton);
 
 function renderEntry(entryObject) {
-  var $outerDiv = document.querySelector('.create-entry');
+  var $outerDiv = document.querySelector('.entries');
   var rowDiv = document.createElement('div');
   rowDiv.className = 'row';
   $outerDiv.appendChild(rowDiv);
@@ -62,3 +62,16 @@ window.addEventListener('DOMContentLoaded', function (event) {
     renderEntry(data.entries[i]);
   }
 });
+
+var $entries = document.getElementById('entries');
+var $views = document.querySelectorAll('.view');
+function viewEntries(event) {
+  for (var j = 0; j < $views.length; j++) {
+    if ($views[j].getAttribute('data-view') !== 'entries') {
+      $views[j].className += ' hidden';
+    } else {
+      $views[j].className = 'container view ' + $views[j].getAttribute('data-view');
+    }
+  }
+}
+$entries.addEventListener('click', viewEntries);
