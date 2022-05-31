@@ -1,0 +1,61 @@
+* {
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #f0f0f0;
+}
+
+.background-purple {
+  background-color: #562b81;
+  color: white;
+}
+
+.journal-header {
+  font-weight: normal;
+}
+
+.entry-image {
+  width: 100%;
+  max-height: 360px;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.label-div {
+  padding-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.input-div {
+  padding-bottom: 1.5rem;
+}
+
+h1,
+h2 {
+  padding-left: 1rem;
+}
+
+.entry-input,
+.entry-textarea {
+  padding: 8px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #b6b6b6;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.button {
+  text-transform: uppercase;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.1rem;
+}
+
+.margin-btm {
+  margin-bottom: 1rem;
+}
