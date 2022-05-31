@@ -23,30 +23,9 @@ function clickSaveButton(event) {
 }
 
 $form.addEventListener('submit', clickSaveButton);
-/*
 
-      <div class="row">
-        <div class="column-half">
-          <ul>
-            <li>
-              <img class="entry-image" src="https://images.pexels.com/photos/3608263/pexels-photo-3608263.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
-            </li>
-          </ul>
-        </div>
-        <div class="column-half">
-          <ul>
-            <li>
-              <h3>Pandas</h3>
-            </li>
-            <li>
-              <p>Pandas love being lazy and eating bamboo is their favorite pastime along with rolling around on the floor</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-*/
 function renderEntry(entryObject) {
-  var $outerDiv = document.querySelector('.createEntry');
+  var $outerDiv = document.querySelector('.create-entry');
   var rowDiv = document.createElement('div');
   rowDiv.className = 'row';
   $outerDiv.appendChild(rowDiv);
@@ -77,3 +56,9 @@ function renderEntry(entryObject) {
   p.textContent = entryObject.notes;
   thirdLi.appendChild(p);
 }
+
+window.addEventListener('DOMContentLoaded', function (event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    renderEntry(data.entries[i]);
+  }
+});
