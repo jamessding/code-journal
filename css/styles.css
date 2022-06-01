@@ -26,6 +26,10 @@ a {
   color: white;
 }
 
+.purple {
+  color: #562b81;
+}
+
 .journal-header {
   font-weight: normal;
 }
@@ -80,6 +84,10 @@ h2 {
 
 .margin-btm {
   margin-bottom: 1rem;
+}
+
+.margin-top {
+  margin-top: 0.5rem;
 }
 
 ul {
