@@ -54,9 +54,12 @@ function renderEntry(entryObject) {
   var secondRowHalfDiv = document.createElement('div');
   secondRowHalfDiv.className = 'row-half';
   secondRowDiv.appendChild(secondRowHalfDiv);
+  var a = document.createElement('a');
+  secondRowHalfDiv.appendChild(a);
   var icon = document.createElement('i');
   icon.className = 'fa-solid fa-pencil right purple margin-top';
-  secondRowHalfDiv.appendChild(icon);
+  icon.setAttribute('data-entry-id', entryObject.entryId);
+  a.appendChild(icon);
   var p = document.createElement('p');
   p.textContent = entryObject.notes;
   secondColDiv.appendChild(p);
@@ -103,3 +106,11 @@ function currentView(event) {
   }
 }
 window.addEventListener('DOMContentLoaded', currentView);
+
+function editEntry(event) {
+  if ((event.target.getAttribute('data-entry-id')) !== null) {
+    viewNewEntry();
+  }
+}
+
+$entryList.addEventListener('click', editEntry);
