@@ -76,7 +76,45 @@
           </div>
         </form>
       </div>
-
+    </div>
+    <div class="view hidden" data-view="edit-entry-form">
+      <div class="container edit-entry-form">
+        <form class="edit-form">
+          <h1>Edit Entry</h1>
+          <div class="row">
+            <div class="column-half">
+              <img class="entry-image" id="edit-placeholder" src="images/placeholder-image-square.jpg">
+            </div>
+            <div class="column-half">
+              <div class="label-div">
+                <label for="title">Title</label>
+              </div>
+              <div class="input-div">
+                <input name="title" class="entry-input" id="edit-title" type="text" required="required">
+              </div>
+              <div class="label-div">
+                <label for="photo-url">Photo URL</label>
+              </div>
+              <div class="input-div">
+                <input name="photoUrl" class="entry-input" id="edit-photo-url" type="url" autocomplete="off" required="required">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <div class="label-div">
+                <label for="notes">Notes</label>
+              </div>
+              <div class="input-div">
+                <textarea name="notes" class="entry-textarea" id="edit-notes" rows="6" required="required"></textarea>
+              </div>
+              <div class="text-align-right margin-btm">
+                <input value="save" type="submit" class="save button background-purple">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>

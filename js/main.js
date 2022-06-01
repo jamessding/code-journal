@@ -8,6 +8,7 @@ function updatePhoto(event) {
 $photoUrlInput.addEventListener('input', updatePhoto);
 
 var $form = document.querySelector('.form');
+var $editForm = document.querySelector('.edit-form');
 function clickSaveButton(event) {
   event.preventDefault();
   var entryObject = {};
@@ -23,6 +24,7 @@ function clickSaveButton(event) {
   viewEntries();
 }
 $form.addEventListener('submit', clickSaveButton);
+$editForm.addEventListener('submit', clickSaveButton);
 
 var $entryList = document.querySelector('.entry-list');
 function renderEntry(entryObject) {
@@ -98,24 +100,39 @@ function viewNewEntry(event) {
 }
 $newButton.addEventListener('click', viewNewEntry);
 
+function viewEditNewEntry(event) {
+  for (var k = 0; k < $views.length; k++) {
+    if ($views[k].getAttribute('data-view') !== 'edit-entry-form') {
+      $views[k].className = 'views hidden';
+    } else {
+      $views[k].className = 'views';
+    }
+  }
+  data.view = 'edit-entry-form';
+}
+$entryList.addEventListener('click', viewEditNewEntry);
+
 function currentView(event) {
   if (data.view === 'entries') {
     viewEntries();
   } else if (data.view === 'entry-form') {
     viewNewEntry();
+  } else if (data.view === 'edit-entry-form') {
+    viewEditNewEntry();
   }
 }
 window.addEventListener('DOMContentLoaded', currentView);
 
+var $editEntryImage = document.getElementById('edit-placeholder');
 function editEntry(event) {
   var editEntryId = event.target.getAttribute('data-entry-id');
   if (editEntryId !== null) {
-    viewNewEntry();
+    viewEditNewEntry();
     data.editing = data.entries[data.entries.length - editEntryId];
-    $entryImage.setAttribute('src', data.editing.photoUrl);
-    $form.elements.photoUrl.value = data.editing.photoUrl;
-    $form.elements.title.value = data.editing.title;
-    $form.elements.notes.value = data.editing.notes;
+    $editEntryImage.setAttribute('src', data.editing.photoUrl);
+    $editForm.elements.photoUrl.value = data.editing.photoUrl;
+    $editForm.elements.title.value = data.editing.title;
+    $editForm.elements.notes.value = data.editing.notes;
   }
 }
 
