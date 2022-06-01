@@ -25,45 +25,57 @@
     </div>
   </header>
   <main>
-    <div class="container entries view hidden" data-view="entries">
-      <h1>Entries</h1>
+    <div class="view hidden" data-view="entries">
+      <div class="container entries">
+        <div class="row">
+          <div class="column-half">
+            <h1>Entries</h1>
+          </div>
+          <div class="column-half text-align-right">
+            <h1><a class="background-purple button new">New</a></h1>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="container entry-form view" data-view="entry-form">
-      <form class="form">
-        <h1>New Entry</h1>
-        <div class="row">
-          <div class="column-half">
-            <img class="entry-image" id="placeholder" src="images/placeholder-image-square.jpg">
-          </div>
-          <div class="column-half">
-            <div class="label-div">
-              <label for="title">Title</label>
+    <div class="view hidden" data-view="entry-form">
+      <div class="container entry-form">
+        <form class="form">
+          <h1>New Entry</h1>
+          <div class="row">
+            <div class="column-half">
+              <img class="entry-image" id="placeholder" src="images/placeholder-image-square.jpg">
             </div>
-            <div class="input-div">
-              <input name="title" class="entry-input" id="title" type="text" required="required">
-            </div>
-            <div class="label-div">
-              <label for="photo-url">Photo URL</label>
-            </div>
-            <div class="input-div">
-              <input name="photoUrl" class="entry-input" id="photo-url" type="url" autocomplete="off" required="required">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="column-full">
-            <div class="label-div">
-              <label for="notes">Notes</label>
-            </div>
-            <div class="input-div">
-              <textarea name="notes" class="entry-textarea" id="notes" rows="6" required="required"></textarea>
-            </div>
-            <div class="text-align-right margin-btm">
-              <input value="save" type="submit" class="save button background-purple">
+            <div class="column-half">
+              <div class="label-div">
+                <label for="title">Title</label>
+              </div>
+              <div class="input-div">
+                <input name="title" class="entry-input" id="title" type="text" required="required">
+              </div>
+              <div class="label-div">
+                <label for="photo-url">Photo URL</label>
+              </div>
+              <div class="input-div">
+                <input name="photoUrl" class="entry-input" id="photo-url" type="url" autocomplete="off" required="required">
+              </div>
             </div>
           </div>
-        </div>
-      </form>
+          <div class="row">
+            <div class="column-full">
+              <div class="label-div">
+                <label for="notes">Notes</label>
+              </div>
+              <div class="input-div">
+                <textarea name="notes" class="entry-textarea" id="notes" rows="6" required="required"></textarea>
+              </div>
+              <div class="text-align-right margin-btm">
+                <input value="save" type="submit" class="save button background-purple">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
     </div>
   </main>
   <script src="js/data.js"></script>

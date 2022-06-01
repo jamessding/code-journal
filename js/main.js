@@ -68,10 +68,33 @@ var $views = document.querySelectorAll('.view');
 function viewEntries(event) {
   for (var j = 0; j < $views.length; j++) {
     if ($views[j].getAttribute('data-view') !== 'entries') {
-      $views[j].className += ' hidden';
+      $views[j].className = 'views hidden';
     } else {
-      $views[j].className = 'container view ' + $views[j].getAttribute('data-view');
+      $views[j].className = 'views';
     }
   }
+  data.view = 'entries';
 }
 $entries.addEventListener('click', viewEntries);
+
+var $newButton = document.querySelector('.new');
+function viewNewEntry(event) {
+  for (var k = 0; k < $views.length; k++) {
+    if ($views[k].getAttribute('data-view') !== 'entry-form') {
+      $views[k].className = 'views hidden';
+    } else {
+      $views[k].className = 'views';
+    }
+  }
+  data.view = 'entry-form';
+}
+$newButton.addEventListener('click', viewNewEntry);
+
+function currentView(event) {
+  if (data.view === 'entries') {
+    viewEntries();
+  } else if (data.view === 'entry-form') {
+    viewNewEntry();
+  }
+}
+window.addEventListener('DOMContentLoaded', currentView);
