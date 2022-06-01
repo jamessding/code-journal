@@ -27,6 +27,7 @@ $form.addEventListener('submit', clickSaveButton);
 var $entryList = document.querySelector('.entry-list');
 function renderEntry(entryObject) {
   var li = document.createElement('li');
+  li.setAttribute('data-entry-id', entryObject.entryId);
   $entryList.prepend(li);
   var rowDiv = document.createElement('div');
   rowDiv.className = 'row';
