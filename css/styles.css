@@ -63,12 +63,18 @@ h2 {
   text-align: right;
 }
 
+.right {
+  float: right;
+}
+
 .button {
   text-transform: uppercase;
   padding: 0.4rem 0.8rem;
   border-radius: 5px;
   border: none;
   font-size: 1.1rem;
+  font-weight: normal;
+  cursor: pointer;
 }
 
 .margin-btm {
