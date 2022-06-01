@@ -108,8 +108,10 @@ function currentView(event) {
 window.addEventListener('DOMContentLoaded', currentView);
 
 function editEntry(event) {
-  if ((event.target.getAttribute('data-entry-id')) !== null) {
+  var editEntryId = event.target.getAttribute('data-entry-id');
+  if (editEntryId !== null) {
     viewNewEntry();
+    data.editing = data.entries[data.entries.length - editEntryId];
   }
 }
 
