@@ -22,40 +22,31 @@ function clickSaveButton(event) {
   renderEntry(entryObject);
   viewEntries();
 }
-
 $form.addEventListener('submit', clickSaveButton);
 
+var $entryList = document.querySelector('.entry-list');
 function renderEntry(entryObject) {
-  var $outerDiv = document.querySelector('.entries');
+  var li = document.createElement('li');
+  $entryList.prepend(li);
   var rowDiv = document.createElement('div');
   rowDiv.className = 'row';
-  $outerDiv.appendChild(rowDiv);
+  li.appendChild(rowDiv);
   var colDiv = document.createElement('div');
   colDiv.className = 'column-half';
   rowDiv.appendChild(colDiv);
-  var ul = document.createElement('ul');
-  colDiv.appendChild(ul);
-  var li = document.createElement('li');
-  ul.appendChild(li);
   var img = document.createElement('img');
   img.className = 'entry-image';
-  img.src = entryObject.photoUrl;
-  li.appendChild(img);
+  img.setAttribute('src', entryObject.photoUrl);
+  colDiv.appendChild(img);
   var secondColDiv = document.createElement('div');
   secondColDiv.className = 'column-half';
   rowDiv.appendChild(secondColDiv);
-  var secondUl = document.createElement('ul');
-  secondColDiv.appendChild(secondUl);
-  var secondLi = document.createElement('li');
-  secondUl.appendChild(secondLi);
   var h3 = document.createElement('h3');
   h3.textContent = entryObject.title;
-  secondLi.appendChild(h3);
-  var thirdLi = document.createElement('li');
-  secondUl.appendChild(thirdLi);
+  secondColDiv.appendChild(h3);
   var p = document.createElement('p');
   p.textContent = entryObject.notes;
-  thirdLi.appendChild(p);
+  secondColDiv.appendChild(p);
 }
 
 window.addEventListener('DOMContentLoaded', function (event) {

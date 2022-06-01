@@ -32,9 +32,10 @@ a {
 
 .entry-image {
   width: 100%;
-  max-height: 360px;
+  height: 20rem;
   border-radius: 5px;
   margin-bottom: 1.5rem;
+  object-fit: cover;
 }
 
 .label-div {
