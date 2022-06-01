@@ -17,9 +17,10 @@ function clickSaveButton(event) {
   entryObject.notes = $form.elements.notes.value;
   data.nextEntryId++;
   data.entries.unshift(entryObject);
-  $photoUrlInput.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
   renderEntry(entryObject);
+  viewEntries();
 }
 
 $form.addEventListener('submit', clickSaveButton);
