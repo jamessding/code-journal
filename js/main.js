@@ -50,7 +50,7 @@ function renderEntry(entryObject) {
 }
 
 window.addEventListener('DOMContentLoaded', function (event) {
-  for (var i = 0; i < data.entries.length; i++) {
+  for (var i = data.entries.length - 1; i >= 0; i--) {
     renderEntry(data.entries[i]);
   }
 });
