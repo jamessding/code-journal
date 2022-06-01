@@ -112,6 +112,10 @@ function editEntry(event) {
   if (editEntryId !== null) {
     viewNewEntry();
     data.editing = data.entries[data.entries.length - editEntryId];
+    $entryImage.setAttribute('src', data.editing.photoUrl);
+    $form.elements.photoUrl.value = data.editing.photoUrl;
+    $form.elements.title.value = data.editing.title;
+    $form.elements.notes.value = data.editing.notes;
   }
 }
 
