@@ -113,6 +113,7 @@ $newButton.addEventListener('click', viewNewEntry);
 function createEntry(event) {
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $changeTitle.textContent = 'New Entry';
+  $deleteButton.className = 'delete-button hidden';
   $form.reset();
 }
 $newButton.addEventListener('click', createEntry);
@@ -136,6 +137,7 @@ function editEntry(event) {
     return;
   }
   viewNewEntry();
+  $deleteButton.className = 'delete-button';
   $changeTitle.textContent = 'Edit Entry';
   var entryLi = event.target.closest('li');
   data.editing = entryLi;
@@ -158,7 +160,14 @@ function getEntryObject(entryLi) {
 }
 
 function deleteEntry(event) {
-
+  viewEntries();
+  // var entryLi = event.target.closest('li');
+  // data.editing = entryLi;
+  // var entryObject = getEntryObject(entryLi);
+  // $entryTitle.value = entryObject.title;
+  // $entryPhotoUrl.value = entryObject.photoUrl;
+  // $entryPlaceholder.setAttribute('src', entryObject.photoUrl);
+  // $entryNotes.value = entryObject.notes;
 }
 
 var $deleteButton = document.querySelector('.delete-button');
