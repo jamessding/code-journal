@@ -14,8 +14,8 @@ function clickSaveButton(event) {
     var entryObject = {};
     entryObject.entryId = data.nextEntryId;
   } else {
-    var entryList = data.editing;
-    entryObject = getEntryObject(entryList);
+    var entryLi = data.editing;
+    entryObject = getEntryObject(entryLi);
   }
   entryObject.photoUrl = $form.elements.photoUrl.value;
   entryObject.title = $form.elements.title.value;
@@ -26,7 +26,7 @@ function clickSaveButton(event) {
     data.entries.unshift(entryObject);
     data.nextEntryId++;
   } else {
-    entryList.replaceWith(renderedEntry);
+    entryLi.replaceWith(renderedEntry);
   }
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
