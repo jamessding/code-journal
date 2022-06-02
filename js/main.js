@@ -156,3 +156,22 @@ function getEntryObject(entryLi) {
     }
   }
 }
+
+function deleteEntry(event) {
+
+}
+
+var $deleteButton = document.querySelector('.delete-button');
+var $modalContainer = document.getElementById('modal-container');
+var $buttonCancel = document.querySelector('.button-cancel');
+var $buttonConfirm = document.querySelector('.button-confirm');
+
+$deleteButton.addEventListener('click', function (event) {
+  $modalContainer.className = 'on-container';
+});
+
+$buttonCancel.addEventListener('click', function (event) {
+  $modalContainer.className = 'off-container';
+});
+
+$buttonConfirm.addEventListener('click', deleteEntry);

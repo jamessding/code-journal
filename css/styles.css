@@ -84,10 +84,6 @@ h2 {
   cursor: pointer;
 }
 
-.margin-btm {
-  margin-bottom: 1rem;
-}
-
 .margin-top {
   margin-top: 0.5rem;
 }
@@ -101,4 +97,71 @@ ul {
 .nav-item {
   align-self: center;
   padding-left: 1.5rem;
+}
+
+.delete-button {
+  border: none;
+  color: #dc2625;
+  text-decoration: underline;
+}
+
+.button-cancel {
+  border-radius: 5px;
+  height: 40px;
+  width: 110px;
+  border: none;
+  font-size: 20px;
+  background-color: #b6b6b6;
+  box-shadow: 0 5px 5px #a1a2a2;
+  color: black;
+  text-transform: uppercase;
+  position: relative;
+  top: 40px;
+}
+
+.button-confirm {
+  border-radius: 5px;
+  height: 40px;
+  width: 130px;
+  border: none;
+  font-size: 20px;
+  background-color: #dc2625;
+  box-shadow: 0 5px 5px #a1a2a2;
+  color: #fefefe;
+  text-transform: uppercase;
+  position: relative;
+  top: 40px;
+}
+
+.overlay {
+  position: absolute;
+  background: rgb(0 0 0 / 70%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.pop-up-container {
+  width: 500px;
+  height: 180px;
+  background-color: white;
+  position: fixed;
+  top: 300px;
+  right: 600px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.pop-up-text {
+  position: relative;
+  top: 20px;
+}
+
+.off-container {
+  display: none;
+}
+
+.on-container {
+  display: contents;
 }
