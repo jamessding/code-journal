@@ -11,29 +11,37 @@ var $form = document.querySelector('.form');
 var $editForm = document.querySelector('.edit-form');
 function clickSaveButton(event) {
   event.preventDefault();
-  var entryObject = {};
-  entryObject.entryId = data.nextEntryId;
+  if (data.editing === null) {
+    var entryObject = {};
+    entryObject.entryId = data.nextEntryId;
+  } else {
+    var entryLi = data.editing;
+    entryObject = getEntryObject(entryLi);
+  }
   entryObject.photoUrl = $form.elements.photoUrl.value;
   entryObject.title = $form.elements.title.value;
   entryObject.notes = $form.elements.notes.value;
-  data.nextEntryId++;
-  data.entries.unshift(entryObject);
+  var renderedEntry = renderEntry(entryObject);
+  if (data.editing === null) {
+    entryLi.prepend(renderedEntry);
+    data.entries.unshift(entryObject);
+    data.nextEntryId++;
+  } else {
+    entryLi.replaceWith(renderedEntry);
+  }
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-  renderEntry(entryObject);
   viewEntries();
 }
 $form.addEventListener('submit', clickSaveButton);
 $editForm.addEventListener('submit', clickSaveButton);
 
-var $entryList = document.querySelector('.entry-list');
 function renderEntry(entryObject) {
-  var li = document.createElement('li');
-  li.setAttribute('data-entry-id', entryObject.entryId);
-  $entryList.prepend(li);
+  var entryLi = document.createElement('li');
+  entryLi.setAttribute('data-entry-id', entryObject.entryId);
   var rowDiv = document.createElement('div');
   rowDiv.className = 'row';
-  li.appendChild(rowDiv);
+  entryLi.appendChild(rowDiv);
   var colDiv = document.createElement('div');
   colDiv.className = 'column-half';
   rowDiv.appendChild(colDiv);
@@ -52,24 +60,26 @@ function renderEntry(entryObject) {
   secondRowDiv.appendChild(rowHalfDiv);
   var h3 = document.createElement('h3');
   h3.textContent = entryObject.title;
+  h3.className = 'entry-title';
   rowHalfDiv.appendChild(h3);
   var secondRowHalfDiv = document.createElement('div');
   secondRowHalfDiv.className = 'row-half';
   secondRowDiv.appendChild(secondRowHalfDiv);
-  var a = document.createElement('a');
-  secondRowHalfDiv.appendChild(a);
   var icon = document.createElement('i');
   icon.className = 'fa-solid fa-pencil right purple margin-top';
   icon.setAttribute('data-entry-id', entryObject.entryId);
-  a.appendChild(icon);
+  secondRowDiv.appendChild(icon);
   var p = document.createElement('p');
   p.textContent = entryObject.notes;
+  p.className = 'entry-notes';
   secondColDiv.appendChild(p);
+  return entryLi;
 }
 
+var entryList = document.querySelector('.entry-list');
 window.addEventListener('DOMContentLoaded', function (event) {
-  for (var i = data.entries.length - 1; i >= 0; i--) {
-    renderEntry(data.entries[i]);
+  for (var i = 0; i < data.entries.length; i++) {
+    entryList.append(renderEntry(data.entries[i]));
   }
 });
 
@@ -84,6 +94,7 @@ function viewEntries(event) {
     }
   }
   data.view = 'entries';
+  data.editing = null;
 }
 $entries.addEventListener('click', viewEntries);
 
@@ -101,16 +112,15 @@ function viewNewEntry(event) {
 $newButton.addEventListener('click', viewNewEntry);
 
 function viewEditNewEntry(event) {
-  for (var k = 0; k < $views.length; k++) {
-    if ($views[k].getAttribute('data-view') !== 'edit-entry-form') {
-      $views[k].className = 'views hidden';
+  for (var l = 0; l < $views.length; l++) {
+    if ($views[l].getAttribute('data-view') !== 'edit-entry-form') {
+      $views[l].className = 'views hidden';
     } else {
-      $views[k].className = 'views';
+      $views[l].className = 'views';
     }
   }
   data.view = 'edit-entry-form';
 }
-$entryList.addEventListener('click', viewEditNewEntry);
 
 function currentView(event) {
   if (data.view === 'entries') {
@@ -135,5 +145,14 @@ function editEntry(event) {
     $editForm.elements.notes.value = data.editing.notes;
   }
 }
+entryList.addEventListener('click', editEntry);
 
-$entryList.addEventListener('click', editEntry);
+function getEntryObject(entryLi) {
+  var entryId = entryLi.getAttribute('data-entry-id');
+  for (var i = 0; i < data.entries.length; i++) {
+    if (entryId === data.entries[i].entryId.toString()) {
+      var entryObject = data.entries[i];
+      return entryObject;
+    }
+  }
+}
