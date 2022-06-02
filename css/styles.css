@@ -69,7 +69,9 @@ h2 {
 }
 
 .right {
-  float: right;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
 }
 
 .button {
