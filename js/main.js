@@ -10,6 +10,9 @@ $photoUrlInput.addEventListener('input', updatePhoto);
 var $form = document.querySelector('.form');
 function clickSaveButton(event) {
   event.preventDefault();
+  if (event.submitter.className === 'delete-button') {
+    return;
+  }
   if (data.editing === null) {
     var entryObject = {};
     entryObject.entryId = data.nextEntryId;
@@ -37,6 +40,7 @@ $form.addEventListener('submit', clickSaveButton);
 function renderEntry(entryObject) {
   var entryLi = document.createElement('li');
   entryLi.setAttribute('data-entry-id', entryObject.entryId);
+  entryLi.className = 'entry';
   var rowDiv = document.createElement('div');
   rowDiv.className = 'row';
   entryLi.appendChild(rowDiv);
@@ -113,6 +117,7 @@ $newButton.addEventListener('click', viewNewEntry);
 function createEntry(event) {
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $changeTitle.textContent = 'New Entry';
+  $deleteButton.className = 'delete-button hidden';
   $form.reset();
 }
 $newButton.addEventListener('click', createEntry);
@@ -136,6 +141,7 @@ function editEntry(event) {
     return;
   }
   viewNewEntry();
+  $deleteButton.className = 'delete-button';
   $changeTitle.textContent = 'Edit Entry';
   var entryLi = event.target.closest('li');
   data.editing = entryLi;
@@ -156,3 +162,36 @@ function getEntryObject(entryLi) {
     }
   }
 }
+function deleteEntry(event) {
+  var entryLi = data.editing;
+  var entryId = entryLi.getAttribute('data-entry-id');
+  var $entryNodeList = document.querySelectorAll('.entry');
+  for (var i = 0; i < $entryNodeList.length; i++) {
+    if (entryId === $entryNodeList[i].getAttribute('data-entry-id')) {
+      $entryNodeList[i].remove();
+    }
+  }
+  for (var j = 0; j < data.entries.length; j++) {
+    if (entryId === data.entries[j].entryId.toString()) {
+      data.entries.splice(j, 1);
+    }
+  }
+  data.editing = null;
+  viewEntries();
+  $modalContainer.className = 'off-container';
+}
+
+var $deleteButton = document.querySelector('.delete-button');
+var $modalContainer = document.getElementById('modal-container');
+var $buttonCancel = document.querySelector('.button-cancel');
+var $buttonConfirm = document.querySelector('.button-confirm');
+
+$deleteButton.addEventListener('click', function (event) {
+  $modalContainer.className = 'on-container';
+});
+
+$buttonCancel.addEventListener('click', function (event) {
+  $modalContainer.className = 'off-container';
+});
+
+$buttonConfirm.addEventListener('click', deleteEntry);
