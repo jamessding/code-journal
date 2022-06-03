@@ -162,10 +162,6 @@ function getEntryObject(entryLi) {
     }
   }
 }
-// set data.editing = null
-// splice object at index i of entries array that has entryId equal to current
-// remove entry's dom tree from page
-// viewEntries();
 function deleteEntry(event) {
   var entryLi = data.editing;
   var entryId = entryLi.getAttribute('data-entry-id');
