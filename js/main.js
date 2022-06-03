@@ -10,6 +10,9 @@ $photoUrlInput.addEventListener('input', updatePhoto);
 var $form = document.querySelector('.form');
 function clickSaveButton(event) {
   event.preventDefault();
+  if (event.submitter.className === 'delete-button') {
+    return;
+  }
   if (data.editing === null) {
     var entryObject = {};
     entryObject.entryId = data.nextEntryId;
@@ -158,9 +161,12 @@ function getEntryObject(entryLi) {
     }
   }
 }
-
+// set data.editing = null
+// splice object at index i of entries array that has entryId equal to current
+// remove entry's dom tree from page
+// viewEntries();
 function deleteEntry(event) {
-  viewEntries();
+  // viewEntries();
   // var entryLi = event.target.closest('li');
   // data.editing = entryLi;
   // var entryObject = getEntryObject(entryLi);
