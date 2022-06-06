@@ -64,6 +64,20 @@ h2 {
   border: 1px solid #b6b6b6;
 }
 
+.search-input {
+  padding: 8px;
+  width: 40%;
+  border-radius: 5px;
+  border: 1px solid #b6b6b6;
+  font-size: 18px;
+  margin-left: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.padding-left {
+  padding-left: 1rem;
+}
+
 .text-align-right {
   text-align: right;
 }
@@ -74,7 +88,8 @@ h2 {
   align-items: center;
 }
 
-button {
+button,
+i {
   cursor: pointer;
 }
 
@@ -170,4 +185,8 @@ ul {
 
 .on-container {
   display: contents;
+}
+
+.search-error {
+  padding-left: 1rem;
 }
