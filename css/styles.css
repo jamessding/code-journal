@@ -6,6 +6,10 @@ body {
   background-color: #f0f0f0;
 }
 
+main {
+  height: 100%;
+}
+
 p {
   font-size: 18px;
 }
@@ -56,8 +60,7 @@ h2 {
   padding-left: 1rem;
 }
 
-.entry-input,
-.entry-textarea {
+.entry-input {
   padding: 8px;
   width: 100%;
   border-radius: 5px;
@@ -80,6 +83,10 @@ h2 {
 
 .text-align-right {
   text-align: right;
+}
+
+.center {
+  align-self: center;
 }
 
 .right {
@@ -105,6 +112,14 @@ i {
 
 .margin-top {
   margin-top: 0.5rem;
+}
+
+.margin-left {
+  margin-left: 0.7rem;
+}
+
+.padding-bottom {
+  padding-bottom: 1.5rem;
 }
 
 ul {
@@ -189,4 +204,9 @@ ul {
 
 .search-error {
   padding-left: 1rem;
+}
+
+.dark {
+  color: white;
+  background-color: #2b2e32;
 }

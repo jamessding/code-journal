@@ -2,7 +2,7 @@
 var $photoUrlInput = document.getElementById('photo-url');
 var $entryImage = document.getElementById('placeholder');
 var $form = document.querySelector('.form');
-var entryList = document.querySelector('.entry-list');
+var $entryList = document.querySelector('.entry-list');
 var $entries = document.getElementById('entries');
 var $views = document.querySelectorAll('.view');
 var $newButton = document.querySelector('.new');
@@ -18,6 +18,10 @@ var $buttonConfirm = document.querySelector('.button-confirm');
 var $searchIcon = document.querySelector('.fa-magnifying-glass');
 var $searchInput = document.querySelector('.search-input');
 var $searchError = document.querySelector('.search-error');
+var $body = document.querySelector('body');
+var $darkButton = document.querySelector('.dark-button');
+var $inputs = document.querySelectorAll('.entry-input');
+var entryLi;
 
 function updatePhoto(event) {
   var url = event.target.value;
@@ -33,15 +37,14 @@ function clickSaveButton(event) {
     var entryObject = {};
     entryObject.entryId = data.nextEntryId;
   } else {
-    var entryLi = data.editing;
-    entryObject = getEntryObject(entryLi);
+    entryObject = data.editing;
   }
   entryObject.photoUrl = $form.elements.photoUrl.value;
   entryObject.title = $form.elements.title.value;
   entryObject.notes = $form.elements.notes.value;
   var renderedEntry = renderEntry(entryObject);
   if (data.editing === null) {
-    entryList.prepend(renderedEntry);
+    $entryList.prepend(renderedEntry);
     data.entries.unshift(entryObject);
     data.nextEntryId++;
   } else {
@@ -95,7 +98,7 @@ function renderEntry(entryObject) {
 
 function DOMContentLoaded(event) {
   for (var i = 0; i < data.entries.length; i++) {
-    entryList.append(renderEntry(data.entries[i]));
+    $entryList.append(renderEntry(data.entries[i]));
   }
 }
 
@@ -135,6 +138,13 @@ function currentView(event) {
   } else if (data.view === 'entry-form') {
     viewNewEntry();
   }
+  if (data.darkMode === true) {
+    data.darkMode = false;
+    toggleDarkMode();
+  } else {
+    data.darkMode = true;
+    toggleDarkMode();
+  }
 }
 
 function editEntry(event) {
@@ -144,15 +154,15 @@ function editEntry(event) {
   viewNewEntry();
   $deleteButton.className = 'delete-button';
   $changeTitle.textContent = 'Edit Entry';
-  var entryLi = event.target.closest('li');
-  data.editing = entryLi;
+  entryLi = event.target.closest('li');
   var entryObject = getEntryObject(entryLi);
+  data.editing = entryObject;
   $entryTitle.value = entryObject.title;
   $entryPhotoUrl.value = entryObject.photoUrl;
   $entryPlaceholder.setAttribute('src', entryObject.photoUrl);
   $entryNotes.value = entryObject.notes;
 }
-entryList.addEventListener('click', editEntry);
+$entryList.addEventListener('click', editEntry);
 
 function getEntryObject(entryLi) {
   var entryId = entryLi.getAttribute('data-entry-id');
@@ -165,7 +175,6 @@ function getEntryObject(entryLi) {
 }
 
 function deleteEntry(event) {
-  var entryLi = data.editing;
   var entryId = entryLi.getAttribute('data-entry-id');
   var $entryNodeList = document.querySelectorAll('.entry');
   for (var i = 0; i < $entryNodeList.length; i++) {
@@ -208,6 +217,26 @@ function searchEntries(event) {
   }
 }
 
+function toggleDarkMode(event) {
+  if (data.darkMode === false) {
+    $body.className = 'dark';
+    $searchInput.className = 'search-input dark';
+    for (var i = 0; i < $inputs.length; i++) {
+      $inputs[i].className = 'entry-input dark';
+    }
+    $darkButton.textContent = 'Dark Mode: on';
+    data.darkMode = true;
+  } else {
+    $body.className = '';
+    $searchInput.className = 'search-input';
+    for (var j = 0; j < $inputs.length; j++) {
+      $inputs[j].className = 'entry-input';
+    }
+    $darkButton.textContent = 'Dark Mode: off';
+    data.darkMode = false;
+  }
+}
+
 $photoUrlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', clickSaveButton);
 window.addEventListener('DOMContentLoaded', DOMContentLoaded);
@@ -223,3 +252,4 @@ $buttonCancel.addEventListener('click', function (event) {
 });
 $buttonConfirm.addEventListener('click', deleteEntry);
 $searchIcon.addEventListener('click', searchEntries);
+$darkButton.addEventListener('click', toggleDarkMode);
